@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8145720fa61504196f67fdf0e00104, type: 3}
+  m_Name: Default settings
+  m_EditorClassIdentifier: 
+  _alwaysRun: 1
+  i_moveEnable: 1
+  i_jumpEnable: 1
+  i_runEnable: 1
+  i_camEnable: 1
+  i_KillEnable: 1
+  i_InteractEnable: 1
+  _walkSpeed: 5
+  _backwalkSpeed: 5
+  _runSpeed: 7
+  _backrunSpeed: 7
+  _jumpSpeed: 3
+  _gravity: 9
+  _forceDivider: 10
+  _enableVertMove: 1
+  _blendAccelerate: 5
+  _blendDeccelerate: 1
+  _maxWalkVelocity: 0.5
+  _maxRunVelocity: 2
+  a_moveEnable: 1
+  a_runEnable: 0
+  a_jumpEnable: 0
+  distance: 5
+  sensivity: 1
+  SensitivityX: 0.5
+  InvertX: 0
+  SensitivityY: 0.5
+  InvertY: 0
+  YClampMin: 30
+  YClampMax: -30
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _envLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _bodyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _ghostLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  _actRange: 2

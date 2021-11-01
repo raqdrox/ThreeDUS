@@ -10,6 +10,7 @@ TagManager:
   - PlayerMainObj
   - NPC
   - PlayerSpawns
+  - Interactables
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - 
   - Ground
-  - Env
+  - World
   - Players
   - Bodies
   - Ghosts
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Players
     uniqueID: 311482793
+    locked: 0
+  - name: World
+    uniqueID: 3038983287
     locked: 0
   - name: Ground
     uniqueID: 1015604209
