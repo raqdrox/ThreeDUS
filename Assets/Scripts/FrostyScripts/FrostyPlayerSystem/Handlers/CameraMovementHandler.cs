@@ -15,6 +15,7 @@ namespace FrostyScripts.PlayerSystem
         private void Awake()
         {
             _Player = GetComponent<PlayerMaster>();
+            _Camera = Camera.main;
         }
 
         void Update()

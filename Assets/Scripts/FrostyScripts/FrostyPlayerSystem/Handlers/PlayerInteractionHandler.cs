@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TDUS_Scripts;
+using FrostyScripts.Events;
 namespace FrostyScripts.PlayerSystem
 {
     public class PlayerInteractionHandler : MonoBehaviour
@@ -26,27 +27,7 @@ namespace FrostyScripts.PlayerSystem
         {
             _Player._inputHandler.i_Interact.performed += Interact;
         }
-        void KeyHandler_a()
-        {
-            if (!_isenabled)
-                return;
 
-            if (_Player._playerData._role == PlayerRole.Imposter)
-            {
-                Kill();  
-            }
-            else
-            {
-                Report();
-            }
-            StartCoroutine(CoolDown(5));
-            
-        }
-
-        void KeyHandler_b()
-        {
-            
-        }
 
         IEnumerator CoolDown(int cdtime = 5)
         {
@@ -78,8 +59,11 @@ namespace FrostyScripts.PlayerSystem
             if (plr != null)
             {
                 print(plr);
+                /////////////
                 plr._actionHandler.Die();
-                //trigger event
+                ////////////
+
+                EventManager.TriggerEvent(GameEvents.IMP_KILL, new KillData(_Player.GetPlayerID(), plr.GetPlayerID()));
             }
 
         }
@@ -120,7 +104,7 @@ namespace FrostyScripts.PlayerSystem
                     {
                         if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
                             return;
-                        Task_Interactable temp = hit.transform.GetComponent<Task_Interactable>();
+                        IInteractable temp = hit.transform.GetComponent<IInteractable>();
                         temp.Trigger(_Player);
                     }
                 }

@@ -2,6 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+//Behavior
+//Client Side
+
 namespace FrostyScripts.PlayerSystem
 {
     [RequireComponent(typeof(CharacterController))]
@@ -19,9 +23,6 @@ namespace FrostyScripts.PlayerSystem
 
 
 
-
-
-
         //-------------------------------
         public bool _isDummy = false;
         //Handler Components
@@ -29,7 +30,6 @@ namespace FrostyScripts.PlayerSystem
         public PlayerInputHandler _inputHandler;
         PlayerMovementHandler _movementHandler;
         PlayerAnimationHandler _animationHandler;
-        
         public PlayerCollisionHandler _collisionHandler;
         public PlayerData _playerData;
         public PlayerInteractionHandler _actionHandler;
@@ -47,8 +47,12 @@ namespace FrostyScripts.PlayerSystem
         public Transform _CameraPos;
 
         ////////Actions////////
-        
         public GameObject _playerMid;
+
+
+
+
+
 
         private void Awake()
         {
@@ -81,6 +85,7 @@ namespace FrostyScripts.PlayerSystem
         }
 
 
+        public int GetPlayerID() => _playerData._playerID;
 
 
         public void TogglePlayerMovement(bool toggle)

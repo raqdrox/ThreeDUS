@@ -24,7 +24,7 @@ namespace FrostyScripts.PlayerSystem
 
 
 
-    [CreateAssetMenu(menuName = "ThreeUSData/Player")]
+    [CreateAssetMenu(menuName = "ThreeDUSData/Player")]
     public class PlayerData : ScriptableObject
     {
         public int _playerID;

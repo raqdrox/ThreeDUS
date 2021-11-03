@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//Manager
+//Server Side
 namespace FrostyScripts.Events
 {
     public enum GameEvents
@@ -22,7 +24,7 @@ namespace FrostyScripts.Events
 
     public class EventManager : MonoBehaviour
     {
-        private Dictionary<GameEvents, UnityEvent<EventData>> eventDictionary;
+        private Dictionary<GameEvents, UnityEvent<MEventData>> eventDictionary;
         private static EventManager eventManager;
         public static EventManager instance
         {
@@ -49,39 +51,39 @@ namespace FrostyScripts.Events
         {
             if (eventDictionary == null)
             {
-                eventDictionary = new Dictionary<GameEvents, UnityEvent<EventData>>();
+                eventDictionary = new Dictionary<GameEvents, UnityEvent<MEventData>>();
             }
         }
 
-        public static void StartListening(GameEvents eventType, UnityAction<EventData> listener)
+        public static void StartListening(GameEvents eventType, UnityAction<MEventData> listener)
         {
-            UnityEvent<EventData> thisEvent = null;
+            UnityEvent<MEventData> thisEvent = null;
             if (instance.eventDictionary.TryGetValue(eventType, out thisEvent))
             {
                 thisEvent.AddListener(listener);
             }
             else
             {
-                thisEvent = new UnityEvent<EventData>();
+                thisEvent = new UnityEvent<MEventData>();
                 thisEvent.AddListener(listener);
                 instance.eventDictionary.Add(eventType, thisEvent);
             }
         }
 
 
-        public static void StopListening(GameEvents eventType, UnityAction<EventData> listener)
+        public static void StopListening(GameEvents eventType, UnityAction<MEventData> listener)
         {
             if (eventManager == null) return;
-            UnityEvent<EventData> thisEvent = null;
+            UnityEvent<MEventData> thisEvent = null;
             if (instance.eventDictionary.TryGetValue(eventType, out thisEvent))
             {
                 thisEvent.RemoveListener(listener);
             }
         }
 
-        public static void TriggerEvent(GameEvents eventType, EventData data = null)
+        public static void TriggerEvent(GameEvents eventType, MEventData data = null)
         {
-            UnityEvent<EventData> thisEvent = null;
+            UnityEvent<MEventData> thisEvent = null;
             if (instance.eventDictionary.TryGetValue(eventType, out thisEvent))
             {
                 thisEvent.Invoke(data);

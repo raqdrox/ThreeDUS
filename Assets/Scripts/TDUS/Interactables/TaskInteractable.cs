@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using FrostyScripts.Events;
 using FrostyScripts.PlayerSystem;
-namespace TDUS_Scripts
+
+//Behavior
+
+//Client Side
+
+
+namespace TDUS_Scripts.Interactions
 {
-    public class Task_Interactable : MonoBehaviour
+    public class TaskInteractable : MonoBehaviour, IInteractable
     {
-        [SerializeField]private GameObject TaskPrefab;
-        GameObject highlight;
+        [SerializeField]private Task TaskObject=null;
+        [SerializeField] GameObject Highlight;
 
-        Task _currTask=null;
+        public bool IsEnabled;
 
-        private void OnEnable()
-        {
-            highlight = transform.GetChild(0).gameObject;
-        }
+        public bool Usable { get => IsEnabled; set => IsEnabled = value; }
+
 
         private void OnTriggerEnter(Collider other)
         {
             if(other.tag=="Player")
             {
-                highlight.SetActive(true);
+                Highlight.SetActive(true);
             }
         }
 
@@ -29,38 +33,37 @@ namespace TDUS_Scripts
         {
             if (other.tag == "Player")
             {
-                highlight.SetActive(false);
+                Highlight.SetActive(false);
             }
         }
 
         public void Trigger(PlayerMaster User)
         {
+            if (TaskObject.TaskCompleted || !IsEnabled)
+                return;
 
-
-            //Check Player Task Availability
-            if (User._playerData._intState != PlayerInteractionState.FREE && _currTask != null)
+            if (User._playerData._intState != PlayerInteractionState.FREE && TaskObject.TaskRunning)
             {
                 Debug.Log("Canceling Current Task");
-                _currTask.EndTask();
-                Destroy(_currTask.gameObject);
-                _currTask = null;
+                TaskObject.EndTask();
+                TaskObject.ResetTask();
                 User._actionHandler.ChangePlayerInteractionState(PlayerInteractionState.FREE);
                 return;
             }
-            if (User._playerData._intState != PlayerInteractionState.FREE && _currTask == null)
+            if (User._playerData._intState != PlayerInteractionState.FREE && !TaskObject.TaskRunning)
             {
                 Debug.LogWarning("Trigger Warning : Player Interaction State is not FREE. Resetting Player Interaction State");
                 User._actionHandler.ChangePlayerInteractionState(PlayerInteractionState.FREE);
                 return;
             }
-            if (User._playerData._intState == PlayerInteractionState.FREE && _currTask != null)
+            if (User._playerData._intState == PlayerInteractionState.FREE && TaskObject.TaskRunning)
             {
                 Debug.LogWarning("Trigger Warning : Interactable Has A Previous Task Enabled");
             }
-            if (User._playerData._intState == PlayerInteractionState.FREE && _currTask != null)
+            if (User._playerData._intState == PlayerInteractionState.FREE && !TaskObject.TaskRunning)
             {
-                _currTask = Instantiate(TaskPrefab).GetComponent<Task>();
-                _currTask.StartTask(User);
+                TaskObject.ResetTask();
+                TaskObject.StartTask(User);
             }
             
         }
