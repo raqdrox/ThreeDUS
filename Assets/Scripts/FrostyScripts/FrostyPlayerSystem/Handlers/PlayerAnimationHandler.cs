@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 namespace FrostyScripts.PlayerSystem
 {
-    public class PlayerAnimationHandler : MonoBehaviour
+    public class PlayerAnimationHandler : NetworkBehaviour
     {
 
         private PlayerMaster _Player;
@@ -194,6 +195,7 @@ namespace FrostyScripts.PlayerSystem
 
         private void FixedUpdate()
         {
+            if (!isLocalPlayer) return;
             AnimHandler();
         }
     }

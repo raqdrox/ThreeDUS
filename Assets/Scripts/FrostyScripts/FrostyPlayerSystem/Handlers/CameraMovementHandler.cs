@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mirror;
 namespace FrostyScripts.PlayerSystem
 {
-    public class CameraMovementHandler : MonoBehaviour
+    public class CameraMovementHandler : NetworkBehaviour
     {
         Vector3 Angles;
 
@@ -20,6 +20,8 @@ namespace FrostyScripts.PlayerSystem
 
         void Update()
         {
+            if (!isLocalPlayer)
+                return;
             if(_Player.CanLook)
                 UpdateCamPosition();
         }

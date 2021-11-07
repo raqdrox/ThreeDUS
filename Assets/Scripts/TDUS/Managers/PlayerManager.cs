@@ -3,42 +3,49 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using FrostyScripts.PlayerSystem;
-
+using TDUS_Scripts.Data;
+using Mirror;
 //Manager
 //Server Side
 namespace TDUS_Scripts.Managers
 {
 
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : NetworkBehaviour
     {
+        
         [SerializeField] GameObject PlayerPrefab;
         [SerializeField] List<Transform> SpawnPoints;
+        [SerializeField] PlayerMaterials MatConfig;
 
         List<PlayerMaster> SpawnedPlayers = new List<PlayerMaster>();
 
 
 
-        public void SpawnPlayer(PlayerData data)
+        public GameObject SpawnPlayer(PlayerData data)
         {
-            var player = Instantiate(PlayerPrefab, SpawnPoints[0].position,SpawnPoints[0].rotation).GetComponent<PlayerMaster>();
-            print(player);
+            
+            var spawn = GetSpawnPoint();
+            var player = Instantiate(PlayerPrefab, spawn.position, spawn.rotation).GetComponent<PlayerMaster>();
             SpawnedPlayers.Add(player);
-            //SetPlayerSpawn(player);
             player._playerData = data;
-            //object ownership stuff
+            SetPlayerColor(player,(PColor)Random.Range(0,3));
+            return player.gameObject;
         }
 
-        public void SetPlayerSpawn(PlayerMaster player)
+        public Transform GetSpawnPoint()
         {
-            player.gameObject.transform.position = SpawnPoints[0].position;
-            player.gameObject.transform.rotation = SpawnPoints[0].rotation;
+            return SpawnPoints[Random.Range(0, SpawnPoints.Count)];
         }
 
         public PlayerMaster GetPlayerFromID(int id)
         {
             return SpawnedPlayers.First(item => item.GetPlayerID() == id);
         }
-        
+
+        public void SetPlayerColor(PlayerMaster player,PColor col)
+        {
+            //player._meshHandler.SetPlayerMaterial(MatConfig._mats[col]);
+        }
 
     }
 }

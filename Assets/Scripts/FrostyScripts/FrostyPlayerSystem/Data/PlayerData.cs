@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TDUS_Scripts.Data;
 namespace FrostyScripts.PlayerSystem
 {
     public enum PlayerRole
@@ -28,7 +28,7 @@ namespace FrostyScripts.PlayerSystem
     public class PlayerData : ScriptableObject
     {
         public int _playerID;
-        public Color _playerColor;
+        public PColor _playerColor;
         public PlayerRole _role;
         public PlayerState _state;
         public PlayerInteractionState _intState;

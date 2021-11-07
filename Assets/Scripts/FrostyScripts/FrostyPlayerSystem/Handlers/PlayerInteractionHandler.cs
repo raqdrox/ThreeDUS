@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TDUS_Scripts;
 using FrostyScripts.Events;
+using Mirror;
 namespace FrostyScripts.PlayerSystem
 {
-    public class PlayerInteractionHandler : MonoBehaviour
+    public class PlayerInteractionHandler : NetworkBehaviour
     {
         private PlayerMaster _Player;
 

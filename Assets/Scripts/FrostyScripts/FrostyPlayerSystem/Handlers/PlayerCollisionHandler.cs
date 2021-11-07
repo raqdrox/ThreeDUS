@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 namespace FrostyScripts.PlayerSystem
 {
-    public class PlayerCollisionHandler : MonoBehaviour
+    public class PlayerCollisionHandler : NetworkBehaviour
     {
         private PlayerMaster _Player;
         public bool _ghostMode => false;

@@ -58,3 +58,11 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Mirror
+/[Aa]ssets/Mirror/
+/[Aa]ssets/ScriptTemplates/
+/[Aa]ssets/Mirror.meta
+
+# ParrelSync
+/[Aa]ssets/ParrelSync/
+/[Aa]ssets/ParrelSync.meta

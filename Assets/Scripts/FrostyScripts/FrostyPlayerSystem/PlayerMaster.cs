@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mirror;
 //Behavior
 //Client Side
 
 namespace FrostyScripts.PlayerSystem
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMaster : MonoBehaviour
+    public class PlayerMaster : NetworkBehaviour
     {
         #region Toggles
 
@@ -26,6 +26,7 @@ namespace FrostyScripts.PlayerSystem
         //-------------------------------
         public bool _isDummy = false;
         //Handler Components
+        public PlayerMeshHandler _meshHandler;
         public PlayerMasterSettings _masterSettings;
         public PlayerInputHandler _inputHandler;
         PlayerMovementHandler _movementHandler;
@@ -56,6 +57,7 @@ namespace FrostyScripts.PlayerSystem
 
         private void Awake()
         {
+            
             //Caching
             _characterController = GetComponent<CharacterController>();
             _animator = GetComponentInChildren<Animator>();

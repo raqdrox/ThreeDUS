@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FrostyScripts.Events;
 using FrostyScripts.PlayerSystem;
+using Mirror;
 
 //Behavior
 
@@ -11,7 +12,7 @@ using FrostyScripts.PlayerSystem;
 
 namespace TDUS_Scripts.Interactions
 {
-    public class TaskInteractable : MonoBehaviour, IInteractable
+    public class TaskInteractable : NetworkBehaviour, IInteractable
     {
         [SerializeField]private Task TaskObject=null;
         [SerializeField] GameObject Highlight;
@@ -39,6 +40,7 @@ namespace TDUS_Scripts.Interactions
 
         public void Trigger(PlayerMaster User)
         {
+            if (!isLocalPlayer) return;
             if (TaskObject.TaskCompleted || !IsEnabled)
                 return;
 

@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace FrostyScripts.PlayerSystem
 {
-    public class PlayerMovementHandler : MonoBehaviour
+    public class PlayerMovementHandler : NetworkBehaviour
     {
 
         PlayerMaster _Player;
@@ -60,6 +61,7 @@ namespace FrostyScripts.PlayerSystem
 
         private void FixedUpdate()
         {
+            if (!isLocalPlayer) return;
             if (_Player.CanMove)
             {
                 RotationHandler();
