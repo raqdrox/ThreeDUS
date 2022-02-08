@@ -192,7 +192,7 @@ namespace FrostyScripts.PlayerSystem
                 _VelocityX = currentMaxVelocity;
             }
         }
-
+        [Client]
         private void FixedUpdate()
         {
             if (!isLocalPlayer) return;

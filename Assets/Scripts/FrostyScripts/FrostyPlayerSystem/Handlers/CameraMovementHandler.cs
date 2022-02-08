@@ -18,6 +18,7 @@ namespace FrostyScripts.PlayerSystem
             _Camera = Camera.main;
         }
 
+        [Client]
         void Update()
         {
             if (!isLocalPlayer)

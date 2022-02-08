@@ -48,8 +48,8 @@ GameObject:
   - component: {fileID: 6000409798108005352}
   - component: {fileID: 7351500787332644397}
   - component: {fileID: 3230777702590622755}
-  - component: {fileID: 1987935417545180174}
   - component: {fileID: 4645206701875733457}
+  - component: {fileID: 1987935417545180174}
   - component: {fileID: 7637317531684313212}
   - component: {fileID: 6709702614277013669}
   m_Layer: 9
@@ -117,7 +117,6 @@ MonoBehaviour:
   _masterSettings: {fileID: 11400000, guid: b90f652dafa96c145ac39795d478be87, type: 2}
   _inputHandler: {fileID: 5180638604127102625}
   _collisionHandler: {fileID: 6000409798108005352}
-  _playerData: {fileID: 11400000, guid: 20bc2fe46a51c7943b374138ea32bc64, type: 2}
   _actionHandler: {fileID: 7351500787332644397}
   _characterController: {fileID: 7277335701232794333}
   _animator: {fileID: 7790148124738602527}
@@ -370,23 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc96e04554159a641b5a5c66df87256e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1987935417545180174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7277335701232794320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 3a6c2acf99f9e9f44945c65ab51c479c
-  hasSpawned: 0
 --- !u!114 &4645206701875733457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +387,23 @@ MonoBehaviour:
   - {fileID: 8199795513259598246}
   - {fileID: 6812326594484048304}
   - {fileID: 3210793851411609931}
+--- !u!114 &1987935417545180174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277335701232794320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 3a6c2acf99f9e9f44945c65ab51c479c
+  hasSpawned: 0
 --- !u!114 &7637317531684313212
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,8 @@ using FrostyScripts.Events;
 using FrostyScripts.Misc;
 using UnityEngine.UI;
 using System;
-
+using Mirror;
+using TDUS_Scripts.Managers;
 //Behavior
 //Client Side
 
@@ -15,24 +16,21 @@ namespace TDUS_Scripts.Interactions
 {
     public class DummyTask : Task
     {
-        private static new readonly TaskType Type=TaskType.DUMMY_TASK;
-
+        public new TaskType Type=>TaskType.DUMMY_TASK;
+        
 
         [SerializeField] private GameObject TaskUI;
         [SerializeField] private Button TaskUIBtn;
-
         Coroutine taskloop=null;
 
-
+        [Client]
         public override void StartTask(PlayerMaster usr)
         {
-            IsRunning = true;
-            User = usr;
-            User._actionHandler.ChangePlayerInteractionState(PlayerInteractionState.TASK);
-            taskloop=StartCoroutine(PlayTask());
+            base.StartTask(usr);
+            taskloop =StartCoroutine(PlayTask());
         }
 
-
+        [Client]
         IEnumerator PlayTask()
         {
             print("Playing task");
@@ -47,22 +45,22 @@ namespace TDUS_Scripts.Interactions
 
 
 
-
+        [Client]
         public override void EndTask()
         {
-            IsRunning = false;
             if (taskloop != null)
                 StopCoroutine(taskloop);
-            
-            User._actionHandler.ChangePlayerInteractionState(PlayerInteractionState.FREE);
-            if (IsComplete)
-                EventManager.TriggerEvent(GameEvents.CREWMATE_TASK_ENDED, new TaskFinishData(User.GetPlayerID(), TaskID));
+
+            //EventManager.TriggerEvent(GameEvents.CREWMATE_TASK_ENDED, new TaskFinishData(User.GetPlayerID(), TaskID));
+            base.EndTask();
         }
 
+        [Client]
         public override void ResetTask()
         {
-            IsComplete = false;
             TaskUI.SetActive(false);
+            base.ResetTask();
+
         }
     }
 }

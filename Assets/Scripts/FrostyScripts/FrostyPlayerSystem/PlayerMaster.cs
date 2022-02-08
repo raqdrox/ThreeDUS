@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TDUS_Scripts.Data;
+
 //Behavior
 //Client Side
 
@@ -63,12 +65,15 @@ namespace FrostyScripts.PlayerSystem
             _animator = GetComponentInChildren<Animator>();
         }
     
-        public void SetPlayerData(PlayerData data)
+        public void SetupPlayer(PlayerData data,Material playerMat)
         {
+            Debug.Log("Setting player");
             _playerData = data;
-            ChangePlayerState(data._state);
-            
             Debug.Log("Player Data Set");
+            ChangePlayerState(data._state);
+            Debug.Log("Player State Set");
+            _meshHandler.SetPlayerMaterial(playerMat);
+            Debug.Log("Player Mat Set");
         }   
         //public void SetPlayerData(int id, Color color ,PlayerRole role=PlayerRole.Crewmate,PlayerState state=PlayerState.Alive)
         //{

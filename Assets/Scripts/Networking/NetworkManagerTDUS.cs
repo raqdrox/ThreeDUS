@@ -11,51 +11,21 @@ namespace TDUS_Scripts.Managers
 {
     public class NetworkManagerTDUS : NetworkManager
     {
-        [SerializeField] private PlayerData DefaultPlayerData;
-        [SerializeField] List<Transform> SpawnPoints;
-        [SerializeField] PlayerMaterials MatConfig;
-        Dictionary<NetworkConnection,PlayerMaster> SpawnedPlayers = new Dictionary<NetworkConnection, PlayerMaster>();
+        PlayerManager _playerManager => PlayerManager.instance;
 
-        List<PColor> AvailableColors= Enum.GetValues(typeof(PColor)).Cast<PColor>().ToList();
-
-
+        [Server]
         public override void OnServerAddPlayer(NetworkConnection conn)
         {
-            var player = SpawnPlayer(DefaultPlayerData, conn);
+            print("AddingPlayer");
+            var player = _playerManager.SpawnPlayer(conn, playerPrefab);
+            print(player);
             NetworkServer.AddPlayerForConnection(conn, player); 
         }
 
-        public GameObject SpawnPlayer(PlayerData data, NetworkConnection conn)
-        {
-
-            var spawn = GetSpawnPoint();
-            var player = Instantiate(playerPrefab, spawn.position, spawn.rotation).GetComponent<PlayerMaster>();
-            print(player);
-            SpawnedPlayers[conn]= player;
-            player._playerData = data;
-            data._playerColor = AvailableColors[UnityEngine.Random.Range(0, AvailableColors.Count)];
-            AvailableColors.Remove(data._playerColor);
-            SetPlayerColor(player, data._playerColor);
-            return player.gameObject;
-        }
-
-        public Transform GetSpawnPoint()
-        {
-            return SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Count)];
-        }
-
-       // public PlayerMaster GetPlayerFromID(int id)
-       // {
-            //return SpawnedPlayers.First(item => item.Value.GetPlayerID() == id);
-       // }
-
-        public void SetPlayerColor(PlayerMaster player, PColor col)
-        {
-            player._meshHandler.SetPlayerMaterial(MatConfig.matmaps.First(item => item.color == col).mat);
-        }
+        [Server]
         public override void OnServerDisconnect(NetworkConnection conn)
         {
-            AvailableColors.Add(SpawnedPlayers[conn]._playerData._playerColor);
+            _playerManager.DespawnPlayer(conn);
             NetworkServer.DestroyPlayerForConnection(conn);
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using FrostyScripts.Events;
 using FrostyScripts.PlayerSystem;
 using Mirror;
-
+using TDUS_Scripts.Managers;
 //Behavior
 
 //Client Side
@@ -14,13 +14,17 @@ namespace TDUS_Scripts.Interactions
 {
     public class TaskInteractable : NetworkBehaviour, IInteractable
     {
-        [SerializeField]private Task TaskObject=null;
+        [SerializeField] private int taskID;
+
+        LevelTaskManager taskManager=> LevelTaskManager.instance;
+
         [SerializeField] GameObject Highlight;
 
-        public bool IsEnabled;
+        private bool IsEnabled;
+        
+
 
         public bool Usable { get => IsEnabled; set => IsEnabled = value; }
-
 
         private void OnTriggerEnter(Collider other)
         {
@@ -38,9 +42,9 @@ namespace TDUS_Scripts.Interactions
             }
         }
 
-        public void Trigger(PlayerMaster User)
+        /*public void Trigger(PlayerMaster User)
         {
-            if (!isLocalPlayer) return;
+            print("Triggered");
             if (TaskObject.TaskCompleted || !IsEnabled)
                 return;
 
@@ -68,7 +72,10 @@ namespace TDUS_Scripts.Interactions
                 TaskObject.StartTask(User);
             }
             
-        }
+        }*/
+
+        [Command(requiresAuthority =false)]
+        public void Trigger(PlayerMaster User) => taskManager.StartPlayerTask(User.GetPlayerID(), this);
 
     }
 }

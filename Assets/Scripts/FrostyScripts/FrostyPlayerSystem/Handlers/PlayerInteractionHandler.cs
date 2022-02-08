@@ -22,11 +22,11 @@ namespace FrostyScripts.PlayerSystem
 
         private void OnEnable()
         {
-            _Player._inputHandler.i_Interact.performed += Interact;
+                _Player._inputHandler.i_Interact.performed += Interact;
         }
         private void OnDisable()
         {
-            _Player._inputHandler.i_Interact.performed += Interact;
+                _Player._inputHandler.i_Interact.performed += Interact;
         }
 
 
@@ -94,18 +94,23 @@ namespace FrostyScripts.PlayerSystem
         }
         void Interact(InputAction.CallbackContext context)
         {
+            
             if (context.phase == InputActionPhase.Performed) 
             {
+                
                 RaycastHit hit;
                 Ray ray = _Player._cameraHandler._Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
                 if(Physics.Raycast(ray , out hit , interactLayer))
                 {
+                    
                     if (hit.transform.tag == "Interactables")
                     {
                         if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
                             return;
+                        print("Interacted");
                         IInteractable temp = hit.transform.GetComponent<IInteractable>();
+                        
                         temp.Trigger(_Player);
                     }
                 }

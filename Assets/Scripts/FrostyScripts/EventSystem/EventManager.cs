@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using Mirror;
 //Manager
 //Server Side
 namespace FrostyScripts.Events
@@ -22,7 +22,7 @@ namespace FrostyScripts.Events
         GAME_END
     }
 
-    public class EventManager : MonoBehaviour
+    public class EventManager : NetworkBehaviour
     {
         private Dictionary<GameEvents, UnityEvent<MEventData>> eventDictionary;
         private static EventManager eventManager;
@@ -87,6 +87,7 @@ namespace FrostyScripts.Events
             if (instance.eventDictionary.TryGetValue(eventType, out thisEvent))
             {
                 thisEvent.Invoke(data);
+                Debug.Log(thisEvent);
             }
         }
 
