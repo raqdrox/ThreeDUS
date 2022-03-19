@@ -5,7 +5,7 @@ using FrostyScripts.PlayerSystem;
 using FrostyScripts.Events;
 
 
-namespace TDUS_Scripts.Interactions
+namespace TDUS_Scripts_OLD.Interactions
 {
     public enum SabotageType
     {

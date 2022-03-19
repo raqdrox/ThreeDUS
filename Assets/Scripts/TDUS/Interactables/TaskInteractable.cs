@@ -4,13 +4,13 @@ using UnityEngine;
 using FrostyScripts.Events;
 using FrostyScripts.PlayerSystem;
 using Mirror;
-using TDUS_Scripts.Managers;
+using TDUS_Scripts_OLD.Managers;
 //Behavior
 
 //Client Side
 
 
-namespace TDUS_Scripts.Interactions
+namespace TDUS_Scripts_OLD.Interactions
 {
     public class TaskInteractable : NetworkBehaviour, IInteractable
     {

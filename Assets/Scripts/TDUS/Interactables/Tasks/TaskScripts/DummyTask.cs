@@ -7,12 +7,12 @@ using FrostyScripts.Misc;
 using UnityEngine.UI;
 using System;
 using Mirror;
-using TDUS_Scripts.Managers;
+using TDUS_Scripts_OLD.Managers;
 //Behavior
 //Client Side
 
 
-namespace TDUS_Scripts.Interactions
+namespace TDUS_Scripts_OLD.Interactions
 {
     public class DummyTask : Task
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using FrostyScripts.PlayerSystem;
-using TDUS_Scripts.Data;
+using TDUS_Scripts_OLD.Data;
 using System.Linq;
 using System;
 
-namespace TDUS_Scripts.Managers
+namespace TDUS_Scripts_OLD.Managers
 {
     
     public class PlayerManager : NetworkBehaviour

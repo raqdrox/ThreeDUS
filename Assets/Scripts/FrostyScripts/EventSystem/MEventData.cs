@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FrostyScripts.PlayerSystem;
-using TDUS_Scripts;
-using TDUS_Scripts.Interactions;
+using TDUS_Scripts_OLD;
+using TDUS_Scripts_OLD.Interactions;
 namespace FrostyScripts.Events
 {
     public interface MEventData { } // Marker Interface

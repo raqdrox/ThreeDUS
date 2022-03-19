@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TDUS_Scripts.Interactions;
-using TDUS_Scripts.Data;
+using TDUS_Scripts_OLD.Interactions;
+using TDUS_Scripts_OLD.Data;
 using Mirror;
 using System;
 using FrostyScripts.PlayerSystem;
 //Manager
 //Server Side
-namespace TDUS_Scripts.Managers
+namespace TDUS_Scripts_OLD.Managers
 {
     [Serializable]
     public class TaskMap

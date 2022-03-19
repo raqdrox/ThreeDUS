@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using TDUS_Scripts.Data;
+using TDUS_Scripts_OLD.Data;
 using FrostyScripts.PlayerSystem;
 using System.Linq;
 using System;
 
-namespace TDUS_Scripts.Managers
+namespace TDUS_Scripts_OLD.Managers
 {
     public class NetworkManagerTDUS : NetworkManager
     {

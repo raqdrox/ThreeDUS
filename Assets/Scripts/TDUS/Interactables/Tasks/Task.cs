@@ -5,8 +5,8 @@ using UnityEngine;
 using FrostyScripts.PlayerSystem;
 using UnityEditor;
 using Mirror;
-using TDUS_Scripts.Managers;
-namespace TDUS_Scripts.Interactions
+using TDUS_Scripts_OLD.Managers;
+namespace TDUS_Scripts_OLD.Interactions
 {
     public enum TaskType
     {

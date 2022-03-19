@@ -4,7 +4,7 @@ using UnityEngine;
 using FrostyScripts.Events;
 using FrostyScripts.PlayerSystem;
 
-namespace TDUS_Scripts
+namespace TDUS_Scripts_OLD
 {
     public interface IInteractable
     {
