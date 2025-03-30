@@ -14,7 +14,7 @@ namespace TDUS_Scripts_OLD.Managers
         PlayerManager _playerManager => PlayerManager.instance;
 
         [Server]
-        public override void OnServerAddPlayer(NetworkConnection conn)
+        public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
             print("AddingPlayer");
             var player = _playerManager.SpawnPlayer(conn, playerPrefab);
@@ -23,7 +23,7 @@ namespace TDUS_Scripts_OLD.Managers
         }
 
         [Server]
-        public override void OnServerDisconnect(NetworkConnection conn)
+        public override void OnServerDisconnect(NetworkConnectionToClient conn)
         {
             _playerManager.DespawnPlayer(conn);
             NetworkServer.DestroyPlayerForConnection(conn);
